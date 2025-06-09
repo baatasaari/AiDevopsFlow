@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
-import { generateSimplePowerPoint } from "./simple-ppt-generator";
+import { generatePresentationPDF } from "./pdf-generator";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
@@ -88,7 +88,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // PowerPoint generation endpoint
   app.get('/api/generate-ppt', async (req, res) => {
     try {
-      const pptBuffer = await generateSimplePowerPoint();
+      const pptBuffer = await generateMinimalPowerPoint();
       
       res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
       res.setHeader('Content-Disposition', 'attachment; filename="GenAI-DevOps-Platform-Architecture.pptx"');
