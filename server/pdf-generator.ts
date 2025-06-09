@@ -1,4 +1,4 @@
-import htmlPdf from 'html-pdf-node';
+const htmlPdf = require('html-pdf-node');
 
 export async function generatePresentationPDF(): Promise<Buffer> {
   const options = {
@@ -414,7 +414,7 @@ export async function generatePresentationPDF(): Promise<Buffer> {
   try {
     const pdfBuffer = await htmlPdf.generatePdf(file, options);
     return pdfBuffer;
-  } catch (error) {
+  } catch (error: any) {
     console.error('PDF generation error:', error);
     throw new Error(`Failed to generate PDF: ${error.message}`);
   }
