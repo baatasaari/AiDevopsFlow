@@ -940,19 +940,25 @@ export class PowerPointGenerator {
   }
 
   async generatePresentation(): Promise<Buffer> {
-    // Create all slides
-    this.createTitleSlide();
-    this.createOverviewSlide();
-    this.createArchitectureSlide();
-    this.createAgentsSlide();
-    this.createWorkflowSlide();
-    this.createEnvironmentSlide();
-    this.createBusinessCaseSlide();
-    this.createRoadmapSlide();
-    this.createClosingSlide();
+    try {
+      // Create all slides
+      this.createTitleSlide();
+      this.createOverviewSlide();
+      this.createArchitectureSlide();
+      this.createAgentsSlide();
+      this.createWorkflowSlide();
+      this.createEnvironmentSlide();
+      this.createBusinessCaseSlide();
+      this.createRoadmapSlide();
+      this.createClosingSlide();
 
-    // Generate and return the presentation as buffer
-    return await this.pptx.write({ outputType: 'nodebuffer' }) as Buffer;
+      // Generate and return the presentation as buffer
+      const result = await this.pptx.write('nodebuffer');
+      return result as Buffer;
+    } catch (error) {
+      console.error('Error in generatePresentation:', error);
+      throw error;
+    }
   }
 }
 
