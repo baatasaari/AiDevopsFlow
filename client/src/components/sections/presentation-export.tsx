@@ -102,31 +102,7 @@ Vijay Rentala`;
     }
   };
 
-  const handleSendEmail = async () => {
-    try {
-      const response = await fetch('/api/send-presentation', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      
-      if (!response.ok) throw new Error('Failed to send email');
-      
-      const result = await response.json();
-      
-      toast({
-        title: "Email Sent Successfully",
-        description: `Presentation delivered to ${result.recipient}`
-      });
-    } catch (error) {
-      toast({
-        title: "Email Failed", 
-        description: "Unable to send presentation email",
-        variant: "destructive"
-      });
-    }
-  };
+
 
   const exportOptions = [
     {
@@ -156,15 +132,7 @@ Vijay Rentala`;
       action: () => window.open(documentUrl, '_blank'),
       buttonText: "View Document"
     },
-    {
-      title: "Send to vijay.rentala@gmail.com",
-      description: "Direct email delivery with PowerPoint attachment",
-      icon: Mail,
-      color: "bg-purple-500",
-      textColor: "text-purple-500",
-      action: handleSendEmail,
-      buttonText: "Send Email"
-    },
+
     {
       title: "Share via Email",
       description: "Compose email with presentation links and summary",

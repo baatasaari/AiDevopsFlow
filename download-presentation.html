@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download GenAI DevOps Presentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #1F4E79;
+            margin-bottom: 20px;
+        }
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .download-btn {
+            background-color: #1F4E79;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        .download-btn:hover {
+            background-color: #163A5F;
+        }
+        .features {
+            text-align: left;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .features h3 {
+            color: #1F4E79;
+            margin-top: 0;
+        }
+        .features ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .features li {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .features li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GenAI-Powered DevOps Platform Architecture</h1>
+        
+        <p class="description">
+            Complete end-to-end architecture presentation for autonomous software delivery with AI agents, 
+            Harness CD integration, GKE clusters, and Istio service mesh.
+        </p>
+
+        <div class="features">
+            <h3>Presentation Contents (8 Slides):</h3>
+            <ul>
+                <li>Executive Summary with $2.4M+ annual cost savings</li>
+                <li>4-Layer System Architecture (Presentation/Orchestration/MCP/Infrastructure)</li>
+                <li>6 Specialized AI Agents (DevOps, Security, Data Governance, Testing, Monitoring, Deployment)</li>
+                <li>8-Stage DevOps Workflow with zero-touch production deployments</li>
+                <li>Environment progression strategy (Dev/Int/Preprod/Prod)</li>
+                <li>2025 Implementation roadmap with quarterly milestones</li>
+                <li>ROI metrics: 75% deployment lead time reduction, 80% faster recovery</li>
+                <li>Contact information and next steps for vijay.rentala@gmail.com</li>
+            </ul>
+        </div>
+
+        <a href="/api/generate-ppt" class="download-btn" download="GenAI-DevOps-Platform-Architecture.pptx">
+            Download PowerPoint Presentation
+        </a>
+
+        <p style="margin-top: 30px; font-size: 14px; color: #888;">
+            File size: ~52KB | Format: PowerPoint (.pptx) | Ready for email sharing
+        </p>
+    </div>
+
+    <script>
+        // Auto-download functionality
+        document.querySelector('.download-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            fetch('/api/generate-ppt')
+                .then(response => {
+                    if (!response.ok) throw new Error('Download failed');
+                    return response.blob();
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'GenAI-DevOps-Platform-Architecture.pptx';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                    
+                    // Update button text
+                    this.textContent = 'Downloaded! Click to download again';
+                    setTimeout(() => {
+                        this.textContent = 'Download PowerPoint Presentation';
+                    }, 3000);
+                })
+                .catch(error => {
+                    alert('Download failed. Please try again.');
+                    console.error('Download error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
