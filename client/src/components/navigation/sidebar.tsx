@@ -8,12 +8,13 @@ import {
   CheckCircle, 
   DollarSign,
   FileText,
+  Share2,
   Map,
   Maximize2,
   Minimize2
 } from "lucide-react";
 
-type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "business-case" | "e2e-architecture" | "roadmap";
+type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "business-case" | "e2e-architecture" | "export" | "roadmap";
 
 interface SidebarProps {
   activeSection: Section;
@@ -30,6 +31,7 @@ const navigationItems = [
   { id: "pipeline" as Section, label: "Pipeline", icon: CheckCircle },
   { id: "business-case" as Section, label: "Business Case", icon: DollarSign },
   { id: "e2e-architecture" as Section, label: "E2E Architecture", icon: FileText },
+  { id: "export" as Section, label: "Share & Export", icon: Share2 },
   { id: "roadmap" as Section, label: "Roadmap", icon: Map },
 ];
 
