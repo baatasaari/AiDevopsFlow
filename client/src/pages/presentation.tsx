@@ -6,9 +6,10 @@ import Architecture from "@/components/sections/architecture";
 import Agents from "@/components/sections/agents";
 import Workflow from "@/components/sections/workflow";
 import Pipeline from "@/components/sections/pipeline";
+import BusinessCase from "@/components/sections/business-case";
 import Roadmap from "@/components/sections/roadmap";
 
-type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "roadmap";
+type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "business-case" | "roadmap";
 
 export default function Presentation() {
   const [activeSection, setActiveSection] = useState<Section>("overview");

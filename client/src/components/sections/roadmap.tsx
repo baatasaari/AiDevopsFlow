@@ -5,67 +5,67 @@ export default function Roadmap() {
   const phases = [
     {
       number: 1,
-      title: "Foundation",
-      description: "Establish core infrastructure and deploy initial AI agents",
-      timeline: "3-4 months",
+      title: "Foundation & Quick Wins",
+      description: "Immediate integration with Harness pipelines and deploy first AI agents for instant ROI",
+      timeline: "2-3 months",
       color: "from-brand-blue to-brand-violet",
       textColor: "text-brand-blue",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=200",
       items: [
-        "Deploy Code Analysis Agent",
-        "Setup AI Orchestration Platform", 
-        "Integrate with existing CI/CD"
+        "Code Analysis Agent integration with existing repos",
+        "Harness CD pipeline enhancement", 
+        "Initial 30% deployment time reduction"
       ]
     },
     {
       number: 2,
-      title: "Security & Quality",
-      description: "Deploy security and testing agents with advanced automation",
-      timeline: "2-3 months",
+      title: "Security & Compliance",
+      description: "Deploy security agents while maintaining existing compliance frameworks",
+      timeline: "1-2 months",
       color: "from-brand-violet to-brand-emerald",
       textColor: "text-brand-violet",
       image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=200",
       items: [
-        "Activate Security Guardian Agent",
-        "Deploy Test Orchestrator Agent",
-        "Implement Stage Gate Automation"
+        "Security Guardian integration with current policies",
+        "Automated vulnerability scanning in pipelines",
+        "Zero impact to production data governance"
       ]
     },
     {
       number: 3,
-      title: "Intelligence",
-      description: "Deploy performance and monitoring agents with ML capabilities",
-      timeline: "3-4 months", 
+      title: "Performance & Monitoring",
+      description: "Full GKE and Istio integration with predictive capabilities",
+      timeline: "2-3 months", 
       color: "from-brand-emerald to-green-400",
       textColor: "text-brand-emerald",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=200",
       items: [
-        "Activate Performance Agent",
-        "Deploy Monitor & Ops Agent",
-        "Enable Predictive Analytics"
+        "Performance Agent deployment across all environments",
+        "Advanced monitoring with GKE clusters",
+        "Predictive scaling and cost optimization"
       ]
     },
     {
       number: 4,
-      title: "Optimization",
-      description: "Complete deployment automation and advanced AI optimization",
-      timeline: "2-3 months",
+      title: "Autonomous Operations",
+      description: "Complete zero-touch production with full AI orchestration",
+      timeline: "1-2 months",
       color: "from-brand-amber to-orange-400", 
       textColor: "text-brand-amber",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=200",
       items: [
-        "Deploy Manager Agent",
-        "Full Autonomous Operations",
-        "Advanced ML Optimization"
+        "Full autonomous production deployments",
+        "AI-powered incident response and resolution",
+        "Complete ROI realization and expansion planning"
       ]
     }
   ];
 
   const successMetrics = [
-    { value: "6-12", label: "Months ROI", color: "text-brand-blue" },
-    { value: "80%", label: "Faster Delivery", color: "text-brand-violet" },
-    { value: "95%", label: "Quality Improvement", color: "text-brand-emerald" },
-    { value: "60%", label: "Cost Reduction", color: "text-brand-amber" }
+    { value: "$2.4M", label: "Annual Cost Savings", color: "text-brand-blue" },
+    { value: "60%", label: "Faster Time-to-Market", color: "text-brand-violet" },
+    { value: "95%", label: "Production Reliability", color: "text-brand-emerald" },
+    { value: "40%", label: "Resource Optimization", color: "text-brand-amber" }
   ];
 
   return (
@@ -77,9 +77,9 @@ export default function Roadmap() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold mb-4">Implementation Roadmap</h2>
+          <h2 className="text-4xl font-bold mb-4">Implementation Roadmap & Business Case</h2>
           <p className="text-xl text-slate-300">
-            Strategic phases for GenAI DevOps transformation
+            Phased approach to minimize risk while maximizing immediate value delivery
           </p>
         </motion.div>
 

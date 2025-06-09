@@ -3,44 +3,44 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function Overview() {
   const stats = [
-    { value: "95%", label: "Deployment Success", color: "text-brand-blue" },
+    { value: "6-12", label: "Months ROI", color: "text-brand-blue" },
     { value: "60%", label: "Faster Delivery", color: "text-brand-emerald" },
-    { value: "80%", label: "Issue Prevention", color: "text-brand-violet" },
-    { value: "24/7", label: "Automated Ops", color: "text-brand-amber" },
+    { value: "95%", label: "Reliability Increase", color: "text-brand-violet" },
+    { value: "$2.4M", label: "Annual Savings", color: "text-brand-amber" },
   ];
 
   const features = [
     {
-      title: "Intelligent Automation",
-      description: "AI-powered agents that learn from your deployment patterns and automatically optimize processes.",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      title: "Business Impact",
+      description: "Direct ROI through reduced deployment times, fewer production incidents, and optimized resource utilization.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
       color: "border-brand-blue/50",
       points: [
-        "Predictive deployment strategies",
-        "Automated rollback decisions", 
-        "Smart resource allocation"
+        "60% reduction in deployment time",
+        "95% decrease in production incidents", 
+        "40% improvement in resource efficiency"
       ]
     },
     {
-      title: "Multi-Agent Collaboration",
-      description: "Six specialized AI agents working in harmony to manage your entire DevOps lifecycle.",
+      title: "Current State Integration",
+      description: "Seamlessly integrates with your existing Harness pipelines, GKE infrastructure, and Istio service mesh.",
       image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
       color: "border-brand-violet/50",
       points: [
-        "Code Analysis Agent",
-        "Security Guardian Agent",
-        "Performance Optimizer Agent"
+        "Zero disruption to current workflows",
+        "Gradual agent deployment strategy",
+        "Maintains existing security protocols"
       ]
     },
     {
-      title: "Real-time Intelligence",
-      description: "Continuous monitoring and predictive insights powered by advanced machine learning.",
+      title: "Competitive Advantage",
+      description: "First-mover advantage in AI-powered DevOps with autonomous data product delivery capabilities.",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
       color: "border-brand-emerald/50",
       points: [
-        "Predictive failure detection",
-        "Performance trend analysis",
-        "Capacity planning insights"
+        "Market-leading deployment velocity",
+        "Zero-touch production environments",
+        "Predictive quality assurance"
       ]
     }
   ];
@@ -56,10 +56,10 @@ export default function Overview() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-brand-blue via-brand-violet to-brand-emerald bg-clip-text text-transparent">
-            GenAI DevOps Lifecycle Platform
+            GenAI DevOps Transformation Proposal
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
-            Revolutionizing software delivery through intelligent automation, predictive analytics, and autonomous decision-making across the entire DevOps lifecycle.
+            Transform your current DevOps operations with AI-powered automation, reducing deployment time by 60% and increasing reliability by 95% through intelligent orchestration.
           </p>
           
           {/* Stats Grid */}

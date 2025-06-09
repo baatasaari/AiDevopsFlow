@@ -5,23 +5,25 @@ import ArchitectureDiagram from "@/components/diagrams/architecture-diagram";
 export default function Architecture() {
   const architectureDetails = [
     {
-      title: "Communication Layer",
+      title: "Existing Infrastructure Compatibility",
       color: "text-brand-blue",
       dotColor: "bg-brand-blue",
       items: [
-        "Event-driven messaging with Apache Kafka",
-        "RESTful APIs for agent coordination", 
-        "WebSocket connections for real-time updates"
+        "Direct integration with Harness CD pipelines",
+        "Native GKE cluster management via MCP servers", 
+        "Istio service mesh configuration automation",
+        "Zero downtime deployment to current environments"
       ]
     },
     {
-      title: "Infrastructure",
+      title: "Implementation Benefits",
       color: "text-brand-emerald", 
       dotColor: "bg-brand-emerald",
       items: [
-        "Kubernetes-native agent deployment",
-        "Auto-scaling based on workload demands",
-        "Multi-cloud deployment capabilities"
+        "Preserves existing security and compliance frameworks",
+        "Gradual rollout without disrupting current operations",
+        "Leverages your Dev/Int/Preprod/Prod environment strategy",
+        "Maintains data governance policies across all environments"
       ]
     }
   ];
@@ -35,9 +37,9 @@ export default function Architecture() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold mb-4">System Architecture</h2>
+          <h2 className="text-4xl font-bold mb-4">Technical Architecture & Integration</h2>
           <p className="text-xl text-slate-300">
-            Distributed AI architecture with autonomous agents and intelligent orchestration
+            Seamless integration with your existing Harness, GKE, and Istio infrastructure
           </p>
         </motion.div>
 
