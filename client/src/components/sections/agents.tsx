@@ -67,9 +67,9 @@ export default function Agents() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold mb-4">AI Agent Ecosystem</h2>
+          <h2 className="text-4xl font-bold mb-4">AI Agent Integration Strategy</h2>
           <p className="text-xl text-slate-300">
-            Six specialized agents collaborating to revolutionize your DevOps workflow
+            Six specialized agents enhancing your existing Harness, GKE, and Istio infrastructure
           </p>
         </motion.div>
 

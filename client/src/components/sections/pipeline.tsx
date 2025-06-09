@@ -144,9 +144,9 @@ export default function Pipeline() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold mb-4">Intelligent Pipeline Orchestration</h2>
+          <h2 className="text-4xl font-bold mb-4">Enhanced Harness Pipeline Intelligence</h2>
           <p className="text-xl text-slate-300">
-            Automated, adaptive, and self-optimizing CI/CD pipelines
+            AI-powered enhancements to your existing Harness CD pipelines with predictive optimization
           </p>
         </motion.div>
 

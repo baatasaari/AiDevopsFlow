@@ -17,7 +17,7 @@ export default function Presentation() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const sections: Section[] = ["overview", "architecture", "agents", "workflow", "pipeline", "roadmap"];
+      const sections: Section[] = ["overview", "architecture", "agents", "workflow", "pipeline", "business-case", "roadmap"];
       const currentIndex = sections.indexOf(activeSection);
 
       if (e.key === "ArrowRight" || e.key === " ") {
@@ -77,6 +77,8 @@ export default function Presentation() {
         return <Workflow />;
       case "pipeline":
         return <Pipeline />;
+      case "business-case":
+        return <BusinessCase />;
       case "roadmap":
         return <Roadmap />;
       default:

@@ -91,9 +91,9 @@ export default function Workflow() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold mb-4">Intelligent Workflow Engine</h2>
+          <h2 className="text-4xl font-bold mb-4">Stage Gate Automation & Decision Intelligence</h2>
           <p className="text-xl text-slate-300">
-            Automated decision-making and adaptive pipeline orchestration
+            AI-powered stage gates that integrate seamlessly with your current approval processes
           </p>
         </motion.div>
 

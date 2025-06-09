@@ -6,12 +6,13 @@ import {
   Users, 
   Zap, 
   CheckCircle, 
+  DollarSign,
   Map,
   Maximize2,
   Minimize2
 } from "lucide-react";
 
-type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "roadmap";
+type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "business-case" | "roadmap";
 
 interface SidebarProps {
   activeSection: Section;
@@ -26,6 +27,7 @@ const navigationItems = [
   { id: "agents" as Section, label: "AI Agents", icon: Users },
   { id: "workflow" as Section, label: "Workflow", icon: Zap },
   { id: "pipeline" as Section, label: "Pipeline", icon: CheckCircle },
+  { id: "business-case" as Section, label: "Business Case", icon: DollarSign },
   { id: "roadmap" as Section, label: "Roadmap", icon: Map },
 ];
 
