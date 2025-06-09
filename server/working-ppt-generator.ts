@@ -1,353 +1,288 @@
-import PptxGenJS from 'pptxgenjs';
+export async function generatePowerPointPresentation(): Promise<Buffer> {
+  try {
+    // Import JSZip using require for better compatibility
+    const JSZip = require('jszip');
+    const zip = new JSZip();
 
-export async function generateWorkingPowerPoint(): Promise<Buffer> {
-  const pptx = new PptxGenJS();
-  
-  // Set basic properties
-  pptx.author = 'GenAI DevOps Platform';
-  pptx.title = 'GenAI-Powered DevOps Platform Architecture';
+    // Define presentation content
+    const slides = [
+      {
+        title: "GenAI-Powered DevOps Platform",
+        subtitle: "Complete End-to-End Architecture for Autonomous Software Delivery",
+        content: [
+          "6 Specialized AI Agents for autonomous operations",
+          "Zero-touch production deployments", 
+          "Complete integration with Harness CD, GKE, and Istio",
+          "Advanced security and compliance automation",
+          "",
+          "Prepared for: vijay.rentala@gmail.com"
+        ]
+      },
+      {
+        title: "Key Performance Improvements",
+        content: [
+          "Deployment Lead Time: 75% reduction (< 2 hours)",
+          "Defect Escape Rate: 60% improvement (< 2%)",
+          "Mean Time to Recovery: 80% faster (< 30 minutes)",
+          "Security Vulnerability Resolution: 90% faster (< 24 hours)",
+          "Annual Cost Savings: $2.4M+ with 8-month payback",
+          "System Uptime: 99.94% achieved (> 99.9% target)"
+        ]
+      },
+      {
+        title: "4-Layer System Architecture",
+        content: [
+          "1. Presentation Layer:",
+          "   Developer Dashboard, Operations Console, Business Analytics",
+          "",
+          "2. Orchestration Layer:",
+          "   Master Orchestrator + 6 Specialized AI Agents + Decision Engine",
+          "",
+          "3. MCP Integration Layer:",
+          "   Harness MCP Server, GKE MCP Server, Istio MCP Server",
+          "",
+          "4. Infrastructure Layer:",
+          "   Harness CD Platform, GKE Clusters, Istio Service Mesh"
+        ]
+      },
+      {
+        title: "6 Specialized AI Agents",
+        content: [
+          "1. DevOps Agent: Pipeline orchestration and infrastructure management",
+          "",
+          "2. Security Guardian: Security scanning and compliance validation",
+          "",
+          "3. Data Governance Agent: Data classification and privacy compliance",
+          "",
+          "4. Testing Agent: Test orchestration and quality assurance",
+          "",
+          "5. Monitoring Agent: Observability and incident response",
+          "",
+          "6. Deployment Agent: Environment management and deployment execution"
+        ]
+      },
+      {
+        title: "8-Stage DevOps Workflow",
+        content: [
+          "1. Code Commit (< 1 min): Developer pushes code, triggers pipeline",
+          "2. AI Code Analysis (2-4 min): Static analysis, quality checks, security scan",
+          "3. Intelligent Build (3-8 min): Optimized build with dependency caching",
+          "4. Security Validation (1-3 min): Comprehensive security and compliance checks",
+          "5. Test Orchestration (5-15 min): AI-powered test selection and execution",
+          "6. Environment Deployment (3-7 min): GKE deployment with Istio configuration",
+          "7. Continuous Monitoring: Real-time monitoring and anomaly detection",
+          "8. Production Deploy (2-5 min): Zero-touch production deployment"
+        ]
+      },
+      {
+        title: "Environment Progression Strategy",
+        content: [
+          "1. Development Environment:",
+          "   Data: Mock data, local development datasets",
+          "   Security: Basic authentication, local secrets",
+          "   Agents: Code Analysis Agent, Basic Security Scanning",
+          "",
+          "2. Integration Environment:",
+          "   Data: Synthetic data mimicking production structure",
+          "   Security: Service-to-service auth, vault integration",
+          "   Agents: Code Analysis, Security Guardian, Test Orchestrator",
+          "",
+          "3. Pre-Production Environment:",
+          "   Data: Anonymized production data, GDPR compliant",
+          "   Security: Full production security controls",
+          "   Agents: All agents active, performance validation",
+          "",
+          "4. Production Environment:",
+          "   Data: Live production data with full governance",
+          "   Security: Maximum security, automated threat detection",
+          "   Agents: Full autonomous operation, predictive scaling"
+        ]
+      },
+      {
+        title: "2025 Implementation Roadmap",
+        content: [
+          "Q1 2025: Foundation & Core Agents",
+          "Master Orchestrator implementation",
+          "DevOps and Security Guardian agents",
+          "Basic Harness CD integration",
+          "",
+          "Q2 2025: Platform Integration",
+          "Complete GKE cluster automation",
+          "Istio service mesh integration",
+          "Testing and Monitoring agents",
+          "",
+          "Q3 2025: Advanced AI & Security",
+          "Data Governance agent implementation",
+          "Advanced security automation",
+          "Predictive analytics integration",
+          "",
+          "Q4 2025: Production & Optimization",
+          "Zero-touch production deployment",
+          "Full autonomous operation",
+          "Performance optimization"
+        ]
+      },
+      {
+        title: "Next Steps",
+        content: [
+          "Ready to Transform Your DevOps Pipeline?",
+          "",
+          "1. Schedule technical deep-dive session",
+          "   Detailed architecture review and requirements analysis",
+          "",
+          "2. Define pilot project scope and timeline",
+          "   Identify initial use case and success metrics",
+          "",
+          "3. Establish development team requirements",
+          "   Infrastructure setup and team onboarding",
+          "",
+          "4. Begin Phase 1 implementation planning",
+          "   Master Orchestrator and core agent development",
+          "",
+          "Contact: vijay.rentala@gmail.com",
+          "GenAI DevOps Platform Architecture Team"
+        ]
+      }
+    ];
 
-  // Slide 1: Title
-  const slide1 = pptx.addSlide();
-  slide1.background = { color: '1e293b' };
-  
-  slide1.addText('GenAI-Powered DevOps Platform', {
-    x: 1,
-    y: 2,
-    w: 8,
-    h: 1.5,
-    fontSize: 36,
-    bold: true,
-    color: 'ffffff',
-    align: 'center'
-  });
+    // Add Content Types XML
+    zip.file('[Content_Types].xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/>
+  ${slides.map((_, i) => `<Override PartName="/ppt/slides/slide${i + 1}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/>`).join('\n  ')}
+</Types>`);
 
-  slide1.addText('Complete End-to-End Architecture for Autonomous Software Delivery', {
-    x: 1,
-    y: 3.5,
-    w: 8,
-    h: 0.8,
-    fontSize: 20,
-    color: 'cbd5e1',
-    align: 'center'
-  });
+    // Add main relationships
+    zip.folder('_rels').file('.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="ppt/presentation.xml"/>
+</Relationships>`);
 
-  slide1.addText('Prepared for: vijay.rentala@gmail.com', {
-    x: 1,
-    y: 5.5,
-    w: 8,
-    h: 0.4,
-    fontSize: 14,
-    color: '64748b',
-    align: 'center',
-    italic: true
-  });
+    // Add presentation relationships
+    zip.folder('ppt').folder('_rels').file('presentation.xml.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  ${slides.map((_, i) => `<Relationship Id="rId${i + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="slides/slide${i + 1}.xml"/>`).join('\n  ')}
+</Relationships>`);
 
-  // Slide 2: Overview
-  const slide2 = pptx.addSlide();
-  slide2.background = { color: '1e293b' };
-  
-  slide2.addText('Platform Overview', {
-    x: 1,
-    y: 0.5,
-    w: 8,
-    h: 0.8,
-    fontSize: 28,
-    bold: true,
-    color: 'ffffff',
-    align: 'center'
-  });
+    // Add presentation.xml
+    zip.folder('ppt').file('presentation.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:presentation xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:sldIdLst>
+    ${slides.map((_, i) => `<p:sldId id="${256 + i}" r:id="rId${i + 1}" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>`).join('\n    ')}
+  </p:sldIdLst>
+  <p:sldSz cx="9144000" cy="6858000" type="screen4x3"/>
+</p:presentation>`);
 
-  slide2.addText('Key Benefits & Improvements:', {
-    x: 1,
-    y: 1.5,
-    w: 8,
-    h: 0.5,
-    fontSize: 18,
-    bold: true,
-    color: '3b82f6'
-  });
+    // Generate slides
+    slides.forEach((slide, index) => {
+      const slideNumber = index + 1;
+      let slideXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sld xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+  <p:cSld>
+    <p:spTree>
+      <p:nvGrpSpPr>
+        <p:cNvPr id="1" name=""/>
+        <p:cNvGrpSpPr/>
+        <p:nvPr/>
+      </p:nvGrpSpPr>
+      <p:grpSpPr>
+        <a:xfrm>
+          <a:off x="0" y="0"/>
+          <a:ext cx="0" cy="0"/>
+          <a:chOff x="0" y="0"/>
+          <a:chExt cx="0" cy="0"/>
+        </a:xfrm>
+      </p:grpSpPr>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="2" name="Title"/>
+          <p:cNvSpPr><a:spLocks noGrp="1"/></p:cNvSpPr>
+          <p:nvPr><p:ph type="title"/></p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+        <p:txBody>
+          <a:bodyPr/>
+          <a:lstStyle/>
+          <a:p>
+            <a:r>
+              <a:rPr lang="en-US" sz="3600" b="1">
+                <a:solidFill><a:srgbClr val="1F4E79"/></a:solidFill>
+              </a:rPr>
+              <a:t>${slide.title}</a:t>
+            </a:r>
+          </a:p>
+        </p:txBody>
+      </p:sp>`;
 
-  const benefits = [
-    '• 75% reduction in deployment lead time (< 2 hours)',
-    '• 60% improvement in defect escape rate (< 2%)',
-    '• 80% faster mean time to recovery (< 30 minutes)',
-    '• 90% faster security vulnerability resolution',
-    '• $2.4M+ annual cost savings with 8-month payback',
-    '• Zero-touch production deployments with full automation'
-  ];
+      if (slide.subtitle) {
+        slideXml += `
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="3" name="Subtitle"/>
+          <p:cNvSpPr><a:spLocks noGrp="1"/></p:cNvSpPr>
+          <p:nvPr><p:ph type="subTitle" idx="1"/></p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+        <p:txBody>
+          <a:bodyPr/>
+          <a:lstStyle/>
+          <a:p>
+            <a:r>
+              <a:rPr lang="en-US" sz="2000">
+                <a:solidFill><a:srgbClr val="404040"/></a:solidFill>
+              </a:rPr>
+              <a:t>${slide.subtitle}</a:t>
+            </a:r>
+          </a:p>
+        </p:txBody>
+      </p:sp>`;
+      }
 
-  benefits.forEach((benefit, index) => {
-    slide2.addText(benefit, {
-      x: 1,
-      y: 2.2 + (index * 0.5),
-      w: 8,
-      h: 0.4,
-      fontSize: 14,
-      color: '10b981'
+      slideXml += `
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="4" name="Content"/>
+          <p:cNvSpPr><a:spLocks noGrp="1"/></p:cNvSpPr>
+          <p:nvPr><p:ph idx="1"/></p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+        <p:txBody>
+          <a:bodyPr/>
+          <a:lstStyle/>`;
+
+      slide.content.forEach(line => {
+        if (line.trim() === '') {
+          slideXml += `<a:p><a:endParaRPr lang="en-US" sz="1800"/></a:p>`;
+        } else {
+          slideXml += `
+          <a:p>
+            <a:r>
+              <a:rPr lang="en-US" sz="1800">
+                <a:solidFill><a:srgbClr val="000000"/></a:solidFill>
+              </a:rPr>
+              <a:t>${line}</a:t>
+            </a:r>
+          </a:p>`;
+        }
+      });
+
+      slideXml += `
+        </p:txBody>
+      </p:sp>
+    </p:spTree>
+  </p:cSld>
+</p:sld>`;
+
+      zip.folder('ppt').folder('slides').file(`slide${slideNumber}.xml`, slideXml);
     });
-  });
 
-  // Slide 3: Architecture
-  const slide3 = pptx.addSlide();
-  slide3.background = { color: '1e293b' };
-  
-  slide3.addText('System Architecture', {
-    x: 1,
-    y: 0.5,
-    w: 8,
-    h: 0.8,
-    fontSize: 28,
-    bold: true,
-    color: 'ffffff',
-    align: 'center'
-  });
-
-  const architectureLayers = [
-    {
-      title: 'Presentation Layer',
-      description: 'Developer Dashboard • Operations Console • Business Analytics'
-    },
-    {
-      title: 'Orchestration Layer',
-      description: 'Master Orchestrator • 6 Specialized AI Agents • Decision Engine'
-    },
-    {
-      title: 'MCP Integration Layer',
-      description: 'Harness MCP Server • GKE MCP Server • Istio MCP Server'
-    },
-    {
-      title: 'Infrastructure Layer',
-      description: 'Harness CD Platform • GKE Clusters • Istio Service Mesh'
-    }
-  ];
-
-  architectureLayers.forEach((layer, index) => {
-    const yPos = 1.8 + (index * 1.2);
+    // Generate and return the PPTX buffer
+    return await zip.generateAsync({ type: 'nodebuffer' });
     
-    slide3.addText(layer.title, {
-      x: 1,
-      y: yPos,
-      w: 8,
-      h: 0.4,
-      fontSize: 16,
-      bold: true,
-      color: '3b82f6'
-    });
-    
-    slide3.addText(layer.description, {
-      x: 1,
-      y: yPos + 0.4,
-      w: 8,
-      h: 0.6,
-      fontSize: 12,
-      color: 'cbd5e1'
-    });
-  });
-
-  // Slide 4: AI Agents
-  const slide4 = pptx.addSlide();
-  slide4.background = { color: '1e293b' };
-  
-  slide4.addText('AI Agent Ecosystem', {
-    x: 1,
-    y: 0.5,
-    w: 8,
-    h: 0.8,
-    fontSize: 28,
-    bold: true,
-    color: 'ffffff',
-    align: 'center'
-  });
-
-  const agents = [
-    'DevOps Agent: Pipeline orchestration and infrastructure management',
-    'Security Guardian: Security scanning and compliance validation',
-    'Data Governance Agent: Data classification and privacy compliance',
-    'Testing Agent: Test orchestration and quality assurance',
-    'Monitoring Agent: Observability and incident response',
-    'Deployment Agent: Environment management and deployment execution'
-  ];
-
-  agents.forEach((agent, index) => {
-    slide4.addText(`${index + 1}. ${agent}`, {
-      x: 1,
-      y: 1.5 + (index * 0.7),
-      w: 8,
-      h: 0.6,
-      fontSize: 12,
-      color: 'ffffff'
-    });
-  });
-
-  // Slide 5: End-to-End Workflow
-  const slide5 = pptx.addSlide();
-  slide5.background = { color: '1e293b' };
-  
-  slide5.addText('End-to-End DevOps Workflow', {
-    x: 1,
-    y: 0.5,
-    w: 8,
-    h: 0.8,
-    fontSize: 28,
-    bold: true,
-    color: 'ffffff',
-    align: 'center'
-  });
-
-  const workflowSteps = [
-    '1. Code Commit (< 1 min) - Developer pushes code, triggers pipeline',
-    '2. AI Code Analysis (2-4 min) - Static analysis, quality checks, security scan',
-    '3. Intelligent Build (3-8 min) - Optimized build with dependency caching',
-    '4. Security Validation (1-3 min) - Comprehensive security and compliance checks',
-    '5. Test Orchestration (5-15 min) - AI-powered test selection and execution',
-    '6. Environment Deployment (3-7 min) - GKE deployment with Istio configuration',
-    '7. Monitoring (Continuous) - Real-time monitoring and anomaly detection',
-    '8. Production Deploy (2-5 min) - Zero-touch production deployment'
-  ];
-
-  workflowSteps.forEach((step, index) => {
-    slide5.addText(step, {
-      x: 1,
-      y: 1.5 + (index * 0.4),
-      w: 8,
-      h: 0.35,
-      fontSize: 10,
-      color: 'ffffff'
-    });
-  });
-
-  // Slide 6: Environment Strategy
-  const slide6 = pptx.addSlide();
-  slide6.background = { color: '1e293b' };
-  
-  slide6.addText('Environment Progression Strategy', {
-    x: 1,
-    y: 0.5,
-    w: 8,
-    h: 0.8,
-    fontSize: 28,
-    bold: true,
-    color: 'ffffff',
-    align: 'center'
-  });
-
-  const environments = [
-    'Development: Mock data, basic authentication, Code Analysis Agent',
-    'Integration: Synthetic data, service auth, Security + Testing agents',
-    'Pre-Production: Anonymized data, full security, all agents active',
-    'Production: Live data, maximum security, full autonomous operation'
-  ];
-
-  environments.forEach((env, index) => {
-    slide6.addText(`${index + 1}. ${env}`, {
-      x: 1,
-      y: 1.8 + (index * 0.8),
-      w: 8,
-      h: 0.7,
-      fontSize: 12,
-      color: 'ffffff'
-    });
-  });
-
-  // Slide 7: Implementation Roadmap
-  const slide7 = pptx.addSlide();
-  slide7.background = { color: '1e293b' };
-  
-  slide7.addText('Implementation Roadmap', {
-    x: 1,
-    y: 0.5,
-    w: 8,
-    h: 0.8,
-    fontSize: 28,
-    bold: true,
-    color: 'ffffff',
-    align: 'center'
-  });
-
-  const roadmap = [
-    'Q1 2025: Foundation & Core Agents (Master Orchestrator, DevOps + Security agents)',
-    'Q2 2025: Platform Integration (GKE automation, Istio integration, Testing + Monitoring)',
-    'Q3 2025: Advanced AI & Security (Data Governance, advanced security, predictive analytics)',
-    'Q4 2025: Production & Optimization (Zero-touch deployment, full autonomous operation)'
-  ];
-
-  roadmap.forEach((quarter, index) => {
-    slide7.addText(quarter, {
-      x: 1,
-      y: 1.8 + (index * 0.8),
-      w: 8,
-      h: 0.7,
-      fontSize: 11,
-      color: '8b5cf6'
-    });
-  });
-
-  // Slide 8: Next Steps
-  const slide8 = pptx.addSlide();
-  slide8.background = { color: '1e293b' };
-  
-  slide8.addText('Next Steps', {
-    x: 1,
-    y: 1.5,
-    w: 8,
-    h: 0.8,
-    fontSize: 32,
-    bold: true,
-    color: 'ffffff',
-    align: 'center'
-  });
-
-  slide8.addText('Ready to Transform Your DevOps Pipeline?', {
-    x: 1,
-    y: 2.5,
-    w: 8,
-    h: 0.6,
-    fontSize: 20,
-    color: '3b82f6',
-    align: 'center'
-  });
-
-  const nextSteps = [
-    '1. Schedule technical deep-dive session',
-    '2. Define pilot project scope and timeline',
-    '3. Establish development team requirements',
-    '4. Begin Phase 1 implementation planning'
-  ];
-
-  nextSteps.forEach((step, index) => {
-    slide8.addText(step, {
-      x: 1,
-      y: 3.5 + (index * 0.4),
-      w: 8,
-      h: 0.3,
-      fontSize: 14,
-      color: 'ffffff'
-    });
-  });
-
-  slide8.addText('Contact: vijay.rentala@gmail.com', {
-    x: 1,
-    y: 5.8,
-    w: 8,
-    h: 0.5,
-    fontSize: 16,
-    bold: true,
-    color: '10b981',
-    align: 'center'
-  });
-
-  // Generate presentation using direct callback approach
-  return new Promise((resolve, reject) => {
-    try {
-      pptx.write('base64')
-        .then((data: string) => {
-          const buffer = Buffer.from(data, 'base64');
-          resolve(buffer);
-        })
-        .catch(reject);
-    } catch (error) {
-      reject(error);
-    }
-  });
+  } catch (error: any) {
+    console.error('Error in PowerPoint generation:', error);
+    throw new Error(`PowerPoint generation failed: ${error.message}`);
+  }
 }

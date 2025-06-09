@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
-import { generatePowerPointPresentation } from "./pptx-simple-generator";
+import { generatePowerPointPresentation } from "./working-ppt-generator";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
@@ -95,7 +95,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
       res.setHeader('Content-Disposition', 'attachment; filename="GenAI-DevOps-Platform-Architecture.pptx"');
       res.send(pptBuffer);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Detailed error generating PowerPoint:', error);
       console.error('Error stack:', error.stack);
       res.status(500).json({ error: 'Failed to generate PowerPoint presentation', details: error.message });
