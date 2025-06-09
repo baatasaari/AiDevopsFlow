@@ -390,10 +390,18 @@ export async function generatePowerPointPresentation(): Promise<Buffer> {
 
   // Generate and return the presentation buffer
   return new Promise<Buffer>((resolve, reject) => {
-    pptx.writeFile()
-      .then((data: string) => {
-        resolve(Buffer.from(data, 'binary'));
-      })
-      .catch(reject);
+    try {
+      const chunks: Buffer[] = [];
+      
+      pptx.stream().on('data', (chunk: Buffer) => {
+        chunks.push(chunk);
+      }).on('end', () => {
+        resolve(Buffer.concat(chunks));
+      }).on('error', (err: Error) => {
+        reject(err);
+      });
+    } catch (error) {
+      reject(error);
+    }
   });
 }
