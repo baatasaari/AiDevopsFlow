@@ -1,1 +1,1 @@
-{"error":"Failed to generate PowerPoint presentation","details":"require is not defined"}
+{"error":"Failed to generate PowerPoint presentation","details":"PowerPoint generation failed: require is not defined"}

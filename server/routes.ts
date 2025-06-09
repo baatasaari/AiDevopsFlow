@@ -2,7 +2,8 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
-import { generatePowerPointPresentation } from "./working-ppt-generator";
+import { generatePowerPointPresentation } from "./final-ppt-generator";
+import { sendPresentationEmail } from "./email-service";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
@@ -99,6 +100,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error('Detailed error generating PowerPoint:', error);
       console.error('Error stack:', error.stack);
       res.status(500).json({ error: 'Failed to generate PowerPoint presentation', details: error.message });
+    }
+  });
+
+  // Email delivery endpoint for sending presentation to vijay.rentala@gmail.com
+  app.post('/api/send-presentation', async (req, res) => {
+    try {
+      console.log('Generating PowerPoint for email delivery...');
+      const pptBuffer = await generatePowerPointPresentation();
+      console.log('PowerPoint generated for email, buffer size:', pptBuffer.length);
+      
+      console.log('Sending presentation email to vijay.rentala@gmail.com...');
+      const emailSent = await sendPresentationEmail('vijay.rentala@gmail.com', pptBuffer);
+      
+      if (emailSent) {
+        console.log('Presentation email sent successfully');
+        res.json({ 
+          success: true, 
+          message: 'GenAI DevOps Platform presentation sent successfully to vijay.rentala@gmail.com',
+          recipient: 'vijay.rentala@gmail.com',
+          attachment: 'GenAI-DevOps-Platform-Architecture.pptx'
+        });
+      } else {
+        res.status(500).json({ 
+          error: 'Failed to send email',
+          message: 'Email delivery failed. Please check SendGrid configuration.'
+        });
+      }
+    } catch (error: any) {
+      console.error('Error in email delivery:', error);
+      res.status(500).json({ 
+        error: 'Failed to send presentation email', 
+        details: error.message 
+      });
     }
   });
 
