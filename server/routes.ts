@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
-import { generatePowerPointPresentation } from "./reliable-ppt-generator";
+import { generatePowerPointPresentation } from "./simple-direct-ppt";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);

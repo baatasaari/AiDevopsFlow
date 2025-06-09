@@ -1,7 +1,7 @@
 export async function generatePowerPointPresentation(): Promise<Buffer> {
-  // Import JSZip using require for better compatibility
-  const JSZip = require('jszip');
-  const zip = new JSZip();
+  // Import JSZip using dynamic import for ES modules
+  const JSZip = await import('jszip');
+  const zip = new JSZip.default();
 
   // Define comprehensive presentation content
   const slides = [
