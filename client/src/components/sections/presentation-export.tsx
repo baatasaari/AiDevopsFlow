@@ -102,13 +102,13 @@ Vijay Rentala`;
 
   const exportOptions = [
     {
-      title: "Download PDF Presentation",
-      description: "Complete presentation in PDF format for email sharing",
+      title: "Download HTML Presentation",
+      description: "Complete presentation in HTML format for email sharing",
       icon: Download,
       color: "bg-red-500",
       textColor: "text-red-500",
       action: handleDownloadPPT,
-      buttonText: "Download PDF"
+      buttonText: "Download HTML"
     },
     {
       title: "Interactive Web Presentation",
