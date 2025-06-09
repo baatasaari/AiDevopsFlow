@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
 import { generatePowerPointPresentation } from "./simple-direct-ppt";
+import { generateWordDocument } from "./doc-generator";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
@@ -99,6 +100,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error('Detailed error generating PowerPoint:', error);
       console.error('Error stack:', error.stack);
       res.status(500).json({ error: 'Failed to generate PowerPoint presentation', details: error.message });
+    }
+  });
+
+  // Word document generation endpoint
+  app.get('/api/generate-doc', async (req, res) => {
+    console.log('Word document route hit!'); // Debug log
+    try {
+      console.log('Starting Word document generation...');
+      const docBuffer = await generateWordDocument();
+      console.log('Word document generated successfully, buffer size:', docBuffer.length);
+      
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+      res.setHeader('Content-Disposition', 'attachment; filename="GenAI-DevOps-Platform-Architecture.docx"');
+      res.send(docBuffer);
+    } catch (error: any) {
+      console.error('Detailed error generating Word document:', error);
+      console.error('Error stack:', error.stack);
+      res.status(500).json({ error: 'Failed to generate Word document', details: error.message });
     }
   });
 
