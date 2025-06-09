@@ -107,7 +107,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 function simulateAgentWorkflow(ws: WebSocket) {
   const agentSteps = [
     {
-      delay: 1000,
+      delay: 500,
+      data: {
+        type: 'agent_status',
+        agent: 'orchestrator',
+        status: 'initializing',
+        message: 'Master Orchestrator starting workflow analysis...'
+      }
+    },
+    {
+      delay: 1500,
       data: {
         type: 'agent_status',
         agent: 'code-analysis',
