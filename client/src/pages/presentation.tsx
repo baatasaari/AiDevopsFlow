@@ -7,9 +7,10 @@ import Agents from "@/components/sections/agents";
 import Workflow from "@/components/sections/workflow";
 import Pipeline from "@/components/sections/pipeline";
 import BusinessCase from "@/components/sections/business-case";
+import E2EArchitecture from "@/components/sections/e2e-architecture";
 import Roadmap from "@/components/sections/roadmap";
 
-type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "business-case" | "roadmap";
+type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "business-case" | "e2e-architecture" | "roadmap";
 
 export default function Presentation() {
   const [activeSection, setActiveSection] = useState<Section>("overview");
@@ -17,7 +18,7 @@ export default function Presentation() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const sections: Section[] = ["overview", "architecture", "agents", "workflow", "pipeline", "business-case", "roadmap"];
+      const sections: Section[] = ["overview", "architecture", "agents", "workflow", "pipeline", "business-case", "e2e-architecture", "roadmap"];
       const currentIndex = sections.indexOf(activeSection);
 
       if (e.key === "ArrowRight" || e.key === " ") {
@@ -40,10 +41,23 @@ export default function Presentation() {
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if ((elem as any).webkitRequestFullscreen) {
+        (elem as any).webkitRequestFullscreen();
+      } else if ((elem as any).msRequestFullscreen) {
+        (elem as any).msRequestFullscreen();
+      }
       setIsFullscreen(true);
     } else {
-      document.exitFullscreen();
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if ((document as any).webkitExitFullscreen) {
+        (document as any).webkitExitFullscreen();
+      } else if ((document as any).msExitFullscreen) {
+        (document as any).msExitFullscreen();
+      }
       setIsFullscreen(false);
     }
   };
@@ -79,6 +93,8 @@ export default function Presentation() {
         return <Pipeline />;
       case "business-case":
         return <BusinessCase />;
+      case "e2e-architecture":
+        return <E2EArchitecture />;
       case "roadmap":
         return <Roadmap />;
       default:

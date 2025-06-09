@@ -7,12 +7,13 @@ import {
   Zap, 
   CheckCircle, 
   DollarSign,
+  FileText,
   Map,
   Maximize2,
   Minimize2
 } from "lucide-react";
 
-type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "business-case" | "roadmap";
+type Section = "overview" | "architecture" | "agents" | "workflow" | "pipeline" | "business-case" | "e2e-architecture" | "roadmap";
 
 interface SidebarProps {
   activeSection: Section;
@@ -28,6 +29,7 @@ const navigationItems = [
   { id: "workflow" as Section, label: "Workflow", icon: Zap },
   { id: "pipeline" as Section, label: "Pipeline", icon: CheckCircle },
   { id: "business-case" as Section, label: "Business Case", icon: DollarSign },
+  { id: "e2e-architecture" as Section, label: "E2E Architecture", icon: FileText },
   { id: "roadmap" as Section, label: "Roadmap", icon: Map },
 ];
 
