@@ -9,7 +9,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 export async function sendPresentationEmail(
   recipientEmail: string,
   pptBuffer: Buffer,
-  fromEmail: string = 'noreply@genai-devops.com'
+  fromEmail: string = 'noreply@replit.dev'
 ): Promise<boolean> {
   try {
     const msg = {
