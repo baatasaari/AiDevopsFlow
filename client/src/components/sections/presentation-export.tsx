@@ -40,7 +40,7 @@ export default function PresentationExport() {
     }
   };
 
-  const handleEmailShare = () => {
+  const handleComposeMail = () => {
     const subject = "GenAI DevOps Platform Architecture Presentation";
     const body = `Hi,
 
@@ -71,6 +71,8 @@ Vijay Rentala`;
     const mailtoUrl = `mailto:vijay.rentala@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoUrl);
   };
+
+  const handleEmailShare = handleComposeMail;
 
   const handleDownloadPPT = async () => {
     try {
