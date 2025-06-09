@@ -81,14 +81,14 @@ Vijay Rentala`;
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'GenAI-DevOps-Platform-Architecture.html';
+      a.download = 'GenAI-DevOps-Platform-Architecture.pptx';
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
       
       toast({
-        title: "PDF Downloaded",
+        title: "PowerPoint Downloaded",
         description: "GenAI DevOps presentation ready for email sharing"
       });
     } catch (error) {
@@ -102,13 +102,13 @@ Vijay Rentala`;
 
   const exportOptions = [
     {
-      title: "Download HTML Presentation",
-      description: "Complete presentation in HTML format for email sharing",
+      title: "Download PowerPoint (PPT)",
+      description: "Complete presentation in PowerPoint format for email sharing",
       icon: Download,
       color: "bg-red-500",
       textColor: "text-red-500",
       action: handleDownloadPPT,
-      buttonText: "Download HTML"
+      buttonText: "Download PPT"
     },
     {
       title: "Interactive Web Presentation",
