@@ -72,7 +72,44 @@ Vijay Rentala`;
     window.open(mailtoUrl);
   };
 
+  const handleDownloadPPT = async () => {
+    try {
+      const response = await fetch('/api/generate-ppt?theme=dark');
+      if (!response.ok) throw new Error('Failed to generate PowerPoint');
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'GenAI-DevOps-Platform-Architecture.pptx';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      toast({
+        title: "PowerPoint Downloaded",
+        description: "GenAI DevOps presentation ready for email sharing"
+      });
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: "Unable to generate PowerPoint presentation",
+        variant: "destructive"
+      });
+    }
+  };
+
   const exportOptions = [
+    {
+      title: "Download PowerPoint (PPT)",
+      description: "Complete presentation in PowerPoint format for email sharing",
+      icon: Download,
+      color: "bg-red-500",
+      textColor: "text-red-500",
+      action: handleDownloadPPT,
+      buttonText: "Download PPT"
+    },
     {
       title: "Interactive Web Presentation",
       description: "Full interactive presentation with animations and simulations",
@@ -99,15 +136,6 @@ Vijay Rentala`;
       textColor: "text-purple-500",
       action: handleEmailShare,
       buttonText: "Compose Email"
-    },
-    {
-      title: "Copy Presentation Link",
-      description: "Copy URL to share with stakeholders",
-      icon: Link,
-      color: "bg-amber-500",
-      textColor: "text-amber-500",
-      action: handleCopyUrl,
-      buttonText: copied ? "Copied!" : "Copy Link"
     }
   ];
 
